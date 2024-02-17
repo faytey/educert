@@ -32,7 +32,7 @@ const Createaccount = (prop) => {
     isLoading: createStatLoading,
     isFetched,
   } = useReadContract({
-    address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
+    address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
     abi: factoryabi,
     functionName: "CreationStatus",
     args: [address],
@@ -55,7 +55,7 @@ const Createaccount = (prop) => {
     ) {
       setLoadingState(true);
       callCreate?.({
-        address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
+        address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
         abi: factoryabi,
         functionName: "CreateAccount",
         args: [institutionName, duration],

@@ -43,7 +43,7 @@ const InputTab = () => {
     isLoading: AllAccountLoading,
     isFetched,
   } = useContractRead({
-    address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
+    address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
     abi: factoryabi,
     functionName: "AllAccounts",
   });
