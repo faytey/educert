@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   RainbowKitProvider,
-  Locale,
   getDefaultConfig,
   darkTheme,
 } from "@rainbow-me/rainbowkit";
@@ -23,6 +22,10 @@ const config = getDefaultConfig({
   ],
   ssr: true,
 });
+
+const appInfo = {
+  appName: "EduCert",
+};
 
 const queryClient = new QueryClient();
 
@@ -45,7 +48,7 @@ function App({ Component, pageProps }) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
-          locale={Locale}
+          appInfo={appInfo}
           coolMode={true}
           modalSize="compact"
           theme={myTheme}
