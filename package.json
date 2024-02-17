@@ -1,0 +1,32 @@
+{
+  "name": "educert",
+  "version": "1.0.0",
+  "description": "An Educational Certificate Generator, Minter and Verifier.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faytey/educert.git"
+  },
+  "keywords": [
+    "Certificate",
+    "Minter",
+    "Secured",
+    "Verification"
+  ],
+  "author": "Faith M. Roberts",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faytey/educert/issues"
+  },
+  "homepage": "https://github.com/faytey/educert#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.20.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.4"
+  }
+}
