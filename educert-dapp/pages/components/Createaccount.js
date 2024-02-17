@@ -4,12 +4,7 @@ import metallic from "../../assets/metallic.png";
 import mark from "../../assets/mark.png";
 import ellipse1 from "../../assets/Ellipse1.png";
 import ellipse2 from "../../assets/Ellipse2.png";
-import {
-  useContractWrite,
-  usePrepareContractWrite,
-  useContractRead,
-  useAccount,
-} from "wagmi";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import factoryabi from "../utils/factory.json";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -36,26 +31,20 @@ const Createaccount = (prop) => {
     isError,
     isLoading: createStatLoading,
     isFetched,
-  } = useContractRead({
+  } = useReadContract({
     address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
     abi: factoryabi,
     functionName: "CreationStatus",
     args: [address],
   });
 
-  const { config: creatAccountConfig } = usePrepareContractWrite({
-    address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
-    abi: factoryabi,
-    functionName: "CreateAccount",
-    args: [institutionName, duration],
-  });
   const {
     data,
     isLoading,
     isError: createError,
     isSuccess,
     write: callCreate,
-  } = useContractWrite(creatAccountConfig);
+  } = useWriteContract();
 
   const handleCreateButton = () => {
     if (
@@ -65,7 +54,12 @@ const Createaccount = (prop) => {
       duration != ""
     ) {
       setLoadingState(true);
-      callCreate?.();
+      callCreate?.({
+        address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
+        abi: factoryabi,
+        functionName: "CreateAccount",
+        args: [institutionName, duration],
+      });
     }
     if (!address) {
       toast.info("Please Connect Wallet");

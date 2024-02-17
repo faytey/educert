@@ -4,10 +4,13 @@ import {
   RainbowKitProvider,
   Locale,
   getDefaultConfig,
+  darkTheme,
 } from "@rainbow-me/rainbowkit";
+import merge from "lodash.merge";
 import { WagmiProvider } from "wagmi";
 import { avalanche, avalancheFuji } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const config = getDefaultConfig({
   appName: "Educert",
