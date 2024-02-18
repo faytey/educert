@@ -7,7 +7,7 @@ import topleft from '../assets/topleft.png'
 import leftcorner from '../assets/leftcorner.png';
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useContractRead, useAccount } from 'wagmi'
+import { useReadContract, useAccount } from 'wagmi'
 import factoryabi from '../pages/utils/factory.json';
 import profile from '../assets/profile.png';
 import { useRouter } from 'next/router';
@@ -21,8 +21,8 @@ export default function Header(prop : any) {
   const [isPageLoading, setIsLoading] = useState(router.isFallback);
 
   const {address} = useAccount()
-  const { data: creationStatData, isError, isLoading, isFetched } = useContractRead({
-    address: '0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79',
+  const { data: creationStatData, isError, isLoading, isFetched } = useReadContract({
+    address: '0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed',
     abi: factoryabi,
     functionName: 'CreationStatus',
     args: [address],

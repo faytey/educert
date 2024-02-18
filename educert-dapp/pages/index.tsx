@@ -68,7 +68,7 @@ export default function Home() {
         </div>
         <Creataccount />
         <Aboutsection />
-        <Herosecton />
+        {/* <Herosecton /> */}
         <Community />
       </div>
     </Layout>

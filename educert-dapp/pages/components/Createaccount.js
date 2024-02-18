@@ -43,7 +43,7 @@ const Createaccount = (prop) => {
     isLoading,
     isError: createError,
     isSuccess,
-    write: callCreate,
+    writeContract: callCreate,
   } = useWriteContract();
 
   const handleCreateButton = () => {
@@ -53,13 +53,15 @@ const Createaccount = (prop) => {
       institutionName != "" &&
       duration != ""
     ) {
-      setLoadingState(true);
+      // setLoadingState(true);
       callCreate?.({
+        factoryabi,
         address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
         abi: factoryabi,
         functionName: "CreateAccount",
         args: [institutionName, duration],
       });
+      console.log('CREATE CLICKED')
     }
     if (!address) {
       toast.info("Please Connect Wallet");
