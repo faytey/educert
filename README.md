@@ -18,7 +18,7 @@ EduCert is an innovative certification management platform that revolutionizes h
 
 The DApp frontend is deployed to [educert-six.vercel.app](https://educert-six.vercel.app) while the contracts are deployed on the Avalanche Fuji testnet, with the following contract addresses:
 
-- **Factory Contract**: [0xd6a356bc384b8cbc2ce29e52aaa55e245a0672ed](https://testnet.snowtrace.io/address/0xd6a356bc384b8cbc2ce29e52aaa55e245a0672ed)
+- **Factory Contract**: [0x6dF3343609306dA2CeE077f7d63ccA26FE3e61DF](https://testnet.snowtrace.io/address/0x6dF3343609306dA2CeE077f7d63ccA26FE3e61DF)
 
 - **Certificate NFT Contract**: [0x07De2611C0C1f1023561f66c1c3F1cbDfA258665](https://testnet.snowtrace.io/address/0x07De2611C0C1f1023561f66c1c3F1cbDfA258665)
 

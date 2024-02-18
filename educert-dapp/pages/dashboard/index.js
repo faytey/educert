@@ -49,13 +49,19 @@ export const Dashboard = () => {
 
   const handleMint = () => {
     if (walletAddress != "") {
-      setLoadingState(true);
+      // setLoadingState(true);
       callMint?.({
+        childAbi,
         address: childContractAddr,
         abi: childAbi,
         functionName: "AppendSignature",
         args: [signature, walletAddress, 1722787680],
       });
+      console.log('mint click')
+      console.log(childContractAddr)
+      console.log(signature)
+      console.log(walletAddress)
+      console.log(1722787680)
     } else {
       toast.error("Input Wallet Address");
     }
@@ -66,7 +72,7 @@ export const Dashboard = () => {
     isLoading: isChildLoading,
     isFetched,
   } = useReadContract({
-    address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
+    address: "0x6dF3343609306dA2CeE077f7d63ccA26FE3e61DF",
     abi: factoryabi,
     functionName: "SingleAccount",
     args: [address],
@@ -154,7 +160,7 @@ export const Dashboard = () => {
     domain: {
       name: "Educational Certificate",
       version: "1",
-      chainId: 44787,
+      chainId: 43113,
       verifyingContract: childContractAddr,
     },
     message: {
@@ -266,6 +272,7 @@ export const Dashboard = () => {
           params: [senderAddress, typedData],
         });
         setSignature(signature);
+        console.log(signature)
         console.log("Signature:", signature);
         handleNext();
       } catch (error) {

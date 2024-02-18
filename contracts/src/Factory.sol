@@ -8,18 +8,18 @@ contract AccountFactory {
         address accountAddress;
         uint certificateID;
     }
-    address owner;
+    address public owner;
     accounts[] Accounts;
     bool paused;
     mapping(address => address) SingleAccountAddress;
-    mapping(address => bool)accountStatus;
+    mapping(address => bool) public accountStatus;
     mapping(address => bool) contractAccountStatus;
     uint certificateIDs;
-    address NftAddress;
+    address public NftAddress;
 
     event accountCreated(string _name, address _accountAddress, uint certID);
     constructor(address _nftAddress) {
-        owner == msg.sender;
+        owner = msg.sender;
         certificateIDs = 1;
         NftAddress = _nftAddress;
     }
@@ -27,10 +27,10 @@ contract AccountFactory {
     function CreateAccount(string memory name_, uint _duration) external {
         require(paused == false, 'Paused');
         require(accountStatus[msg.sender] == false, 'existing account');
-        UserAccount account = new UserAccount(name_, msg.sender, _duration,certificateIDs, NftAddress,msg.sender);
+        UserAccount account = new UserAccount(name_, msg.sender, _duration,certificateIDs, NftAddress, msg.sender);
         Accounts.push(accounts(name_, address(account), certificateIDs ));
         SingleAccountAddress[msg.sender] = address(account);
-        accountStatus[msg.sender] == true;
+        accountStatus[msg.sender] = true;
         contractAccountStatus[address(account)] = true;
         emit accountCreated(name_,address(account), certificateIDs);
         certificateIDs++;
@@ -52,7 +52,7 @@ contract AccountFactory {
     function CreationStatus(address account) public view returns (bool) {
         return accountStatus[account];
     }
-    function AccountcontractState() external view returns(bool) {
-        return contractAccountStatus[msg.sender];
+    function AccountcontractState(address contractAccount) external view returns(bool) {
+        return contractAccountStatus[contractAccount];
     }
 }

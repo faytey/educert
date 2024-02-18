@@ -21,12 +21,15 @@ export default function Header(prop : any) {
   const [isPageLoading, setIsLoading] = useState(router.isFallback);
 
   const {address} = useAccount()
-  const { data: creationStatData, isError, isLoading, isFetched } = useReadContract({
-    address: '0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed',
+  
+  const { data: creationStatData, isFetched } = useReadContract({
     abi: factoryabi,
+    address: '0x6dF3343609306dA2CeE077f7d63ccA26FE3e61DF',
     functionName: 'CreationStatus',
     args: [address],
   })
+
+
 
   const handlepop = () =>{
     setPopOpen(!popOpen);

@@ -22,12 +22,11 @@ contract UserAccount is EIP712 {
         bool issueStatus;
         bytes32 _digest;
     }
-    address owner;
-    address NFTaddress;
+    address public owner;
+    address public NFTaddress;
     mapping(address => institution)institutionProperties;
     mapping(address => receipientDetails) private Evidence;
     mapping(address => uint) private Nonces;
-    bool accountstatus;
     uint CertificateID;
 
     event Mint (address to, uint id);
@@ -49,7 +48,6 @@ contract UserAccount is EIP712 {
   
     //Offchain Signing.
     function AppendSignature(bytes memory signature, address account, uint deadline) external onlyOwner{
-        require(accountstatus == true, 'Initialize Account');
         bytes32 digest = _hashTypedDataV4(keccak256(abi.encode(
             keccak256("MintCert(address owner,address recipient,uint256 certificateID,uint256 nonce,uint256 deadline)"),
             owner,
@@ -66,6 +64,7 @@ contract UserAccount is EIP712 {
         Nonces[owner]++;
         ICert(NFTaddress).Mintcert(account,CertificateID, 1);
         Evidence[account] = receipientDetails(deadline,CertificateID,signature, true, digest);
+        institutionProperties[owner].certMinted++;
         emit Mint(account, CertificateID);
     }
     function VerifySignature(address account)external view returns (bool) {
@@ -86,24 +85,16 @@ contract UserAccount is EIP712 {
         return true;
     }
     function TransferOwnership(address _newOwner) external onlyOwner{
-        require(accountstatus == true, 'Initialize Account');
         owner = _newOwner;
     }
 
-    function AccountStatus() public view returns (bool){
-        return accountstatus;
-    }
     function Institution() view public returns(institution memory) {
         return institutionProperties[owner];
     }
     function id() external view returns(uint){
         return CertificateID;
     }
-    function nonce() external view returns(uint){
+     function nonce() external view returns(uint){
         return Nonces[owner];
     }
 }
-
-
-// forge create --rpc-url https://avalanche-fuji.infura.io/v3/45bddcf9861343ebbe5f481824e2e8ef --private-key ddfe6d47cff0a18aa845a6e04813cc46f932d16f1d57e4cad71d5ca2ecded362 src/Factory.sol:MyContract
-// forge create --rpc-url https://avalanche-fuji.infura.io/v3/45bddcf9861343ebbe5f481824e2e8ef --constructor-args "uri" --private-key ddfe6d47cff0a18aa845a6e04813cc46f932d16f1d57e4cad71d5ca2ecded362 src/Certificate.sol:Certificate --etherscan-api-key 1234 --verify
