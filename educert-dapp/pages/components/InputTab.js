@@ -10,7 +10,7 @@ import {
   Button,
   Collapse,
 } from "@chakra-ui/react";
-import { useContractRead, useAccount } from "wagmi";
+import { useContractRead, useAccount, useReadContract } from "wagmi";
 import factoryabi from "../utils/factory.json";
 import childabi from "../utils/childAccount.json";
 import { useEffect, useState, useRef } from "react";
@@ -53,7 +53,7 @@ const InputTab = () => {
     isError: isErrorVerify,
     isLoading: isverifyLoading,
     isFetched: isVerifyFetched,
-  } = useContractRead({
+  } = useReadContract({
     address: chooseAddr,
     abi: childabi,
     functionName: "VerifySignature",
