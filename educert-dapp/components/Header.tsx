@@ -26,7 +26,7 @@ export default function Header(prop: any) {
     isLoading,
     isFetched,
   } = useReadContract({
-    address: "0xd6a356bc384b8cbc2ce29e52aaa55e245a0672ed",
+    address: "0x504195e2a73A2Cd0f3c691e49ADC93E509cFdA79",
     abi: factoryabi,
     functionName: "CreationStatus",
     args: [address],
