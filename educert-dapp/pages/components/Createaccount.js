@@ -1,10 +1,16 @@
+"use client";
 import { Input, Button } from "@chakra-ui/react";
 import Image from "next/image";
 import metallic from "../../assets/metallic.png";
 import mark from "../../assets/mark.png";
 import ellipse1 from "../../assets/Ellipse1.png";
 import ellipse2 from "../../assets/Ellipse2.png";
-import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import {
+  useAccount,
+  useReadContract,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
 import factoryabi from "../utils/factory.json";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -43,10 +49,29 @@ const Createaccount = (prop) => {
     isLoading,
     isError: createError,
     isSuccess,
-    write: callCreate,
+    writeContract: callCreate,
   } = useWriteContract();
 
-  const handleCreateButton = () => {
+  const { data: convertWaitData, isLoading: convertLoading } =
+    useWaitForTransactionReceipt({
+      hash: data,
+    });
+
+  const creating = () => {
+    console.log("creating ...");
+    callCreate?.({
+      address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
+      abi: factoryabi,
+      functionName: "CreateAccount",
+      args: [institutionName, duration],
+    });
+    console.log(callCreate);
+    console.log("created");
+  };
+
+  const handleCreateButton = (e) => {
+    e.preventDefault();
+
     if (
       creationStatData == false &&
       address &&
@@ -54,12 +79,7 @@ const Createaccount = (prop) => {
       duration != ""
     ) {
       setLoadingState(true);
-      callCreate?.({
-        address: "0xd6a356Bc384B8CBc2ce29e52AAa55e245a0672Ed",
-        abi: factoryabi,
-        functionName: "CreateAccount",
-        args: [institutionName, duration],
-      });
+      creating();
     }
     if (!address) {
       toast.info("Please Connect Wallet");

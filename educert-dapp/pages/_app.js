@@ -6,7 +6,7 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import merge from "lodash.merge";
-import { WagmiProvider } from "wagmi";
+import { WagmiProvider, http } from "wagmi";
 import { avalancheFuji } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -14,12 +14,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 const config = getDefaultConfig({
   appName: "Educert",
   projectId: "2afb2469942b2b96b36433a184c88bb5",
-  chains: [
-    avalancheFuji,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-      ? [avalancheFuji]
-      : []),
-  ],
+  chains: [avalancheFuji],
+  transports: {
+    [avalancheFuji.id]: http(),
+  },
   ssr: true,
 });
 
