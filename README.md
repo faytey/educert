@@ -20,7 +20,7 @@ The DApp frontend is deployed to [educert-six.vercel.app](https://educert-six.ve
 
 - **Factory Contract**: [0x6dF3343609306dA2CeE077f7d63ccA26FE3e61DF](https://testnet.snowtrace.io/address/0x6dF3343609306dA2CeE077f7d63ccA26FE3e61DF)
 
-- **Certificate NFT Contract**: [0x07De2611C0C1f1023561f66c1c3F1cbDfA258665](https://testnet.snowtrace.io/address/0x07De2611C0C1f1023561f66c1c3F1cbDfA258665)
+- **Certificate NFT Contract**: [0x8c53f4aa19f9cdb0256f4306c462238cf6998a86](https://testnet.snowtrace.io/address/0x8c53f4aa19f9cdb0256f4306c462238cf6998a86)
 
 ## Usage
 
